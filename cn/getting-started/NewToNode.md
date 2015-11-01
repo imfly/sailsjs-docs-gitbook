@@ -1,77 +1,76 @@
-# New to [Node.js](https://soundcloud.com/marak/marak-the-node-js-rap)?
-That's okay!  We'll get you pointed in the right direction.
+# [Node.js](https://soundcloud.com/marak/marak-the-node-js-rap) 新手?
+好吧，让我们帮你“领上道”吧。
 
+官网 [nodejs.org](http://nodejs.org) 的介绍是这样的：
+> "Node.js是一个构建在`谷歌javascript运行器`(Chrome's JavaScript runtime)上的平台， 易于构建快速、可扩展的网络应用。Node.js 使用事件驱动，非柱塞 I/O 模型，使得数据密集型实时应用运行在跨分布式设备上（更加）轻量、高效和完美。"
 
-Per [nodejs.org](http://nodejs.org):
-> "Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices."
+更简单地说，Node.js允许我们在浏览器之外迅速有效地运行JavaScript代码，使得应用同一种语言开发前端和后端成为可能。
 
-More simply put, Node.js allows us to quickly and efficiently run JavaScript code outside the browser, making it possible to use the same language on both the frontend and the backend.
+## 需要什么操作系统？
 
-## What OS do I need?
+Node.js 可以安装在大部分主流的操作系统上，MacOSX，许多流行的 Linux，以及 Windows 都支持。
 
-Node.js will install on most major Operating systems.  MacOSX, many flavors of Linux, and Windows are supported.
+现在，你可以根据自己的操作系统，选择浏览下面的介绍文章：
 
-Now, lets take a look at what OS you have.  Please choose from the following for instructions on setting up Node.js:
+ [Mac OSX](http://sailsjs.org/get-started#?install-on-osx)
 
-I have [Mac OSX](http://sailsjs.org/get-started#?install-on-osx)
+[Linux](http://sailsjs.org/get-started#?install-on-linux)
 
-I have [Linux](http://sailsjs.org/get-started#?install-on-linux)
-
-I have [Windows](http://sailsjs.org/get-started#?install-on-windows)
+ [Windows](http://sailsjs.org/get-started#?install-on-windows)
 
 <h2>
 <a id="install-on-osx" name="/getStarted?q=--install-on-osx-" class="anchor" href="http://sailsjs.org/getStarted?q=--install-on-osx-"><span class="mini-icon mini-icon-link"></span></a>
-Install on OSX
+OSX安装
 </h2>
 
-Using [a package](http://nodejs.org/download/):
+使用 [一个包](http://nodejs.org/download/):
 
-_Simply [download Macintosh Installer](http://nodejs.org/download/)._
+_简单 [下载 Macintosh Installer](http://nodejs.org/download/)._
 
-Using [homebrew](https://github.com/mxcl/homebrew):
+使用 [homebrew](https://github.com/mxcl/homebrew):
 
     brew install node
 
-Using [macports](http://www.macports.org/):
+使用 [macports](http://www.macports.org/):
 
     port install nodejs
 
 <h2>
 <a id="install-on-linux" name="/getStarted?q=--install-on-linux-" class="anchor" href="http://sailsjs.org/getStarted?--install-on-linux-"><span class="mini-icon mini-icon-link"></span></a>
-Install on Linux
+Linux安装
 </h2>
 
 ### Ubuntu, Mint
 
-Example install:
+例如:
 
     sudo apt-get install python-software-properties python g++ make
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
     sudo apt-get install -y nodejs
 
-It installs current stable Node on the current stable Ubuntu. Quantal (12.10) users may need to install the *software-properties-common* package for the `add-apt-repository` command to work: `sudo apt-get install software-properties-common`
+这会将当前稳定的 node.js 安装在当前稳定版的Ubuntu.上。Quantal (12.10) 用户可能需要为`add-apt-repository`命令安装 *software-properties-common* 包，才能运行 `sudo apt-get install software-properties-common`
 
-There is a naming conflict with the node package (Amateur Packet Radio Node Program), and the nodejs binary has been renamed from `node` to `nodejs`. You'll need to symlink `/usr/bin/node` to `/usr/bin/nodejs` or you could uninstall the Amateur Packet Radio Node Program to avoid that conflict.
+与包(Amateur Packet Radio Node Program)有一个名字冲突，二进制的nodejs已经将名字从`node`改为`nodejs`。你需要符号链接`/usr/bin/node` 到`/usr/bin/nodejs`，或者卸载 Amateur Packet Radio Node 程序，避免冲突。
 
 ### Fedora
 
-[Node.js](https://apps.fedoraproject.org/packages/nodejs) and [npm](https://apps.fedoraproject.org/packages/npm) are available in Fedora 18 and later.  Just use your favorite graphical package manager or run this on a terminal to install both npm and node:
+Fedora 18 和更新版本，[Node.js](https://apps.fedoraproject.org/packages/nodejs) and [npm](https://apps.fedoraproject.org/packages/npm) 可用。仅仅使用您喜欢的图形包管理器，或在命令行安装即可:
 
     sudo yum install npm
 
 ### RHEL/CentOS/Scientific Linux 6
 
-Node.js and npm are available from the [Fedora Extra Packages for Enterprise Linux (EPEL)](https://fedoraproject.org/wiki/EPEL) _testing_ repository.  If you haven't already done so, first [enable EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) and then run the following command to install node and npm:
+Node.js and npm 可用于 [Fedora Extra Packages for Enterprise Linux (EPEL)](https://fedoraproject.org/wiki/EPEL) _测试_ 库。如果你还没有这么做，首先[启用EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F)，然后运行下面的命令：
 
     su -c 'yum --enablerepo=epel-testing install npm'
 
 ### Arch Linux
-Node.js is available in the Community Repository.
+Node.js 可用在社区库.
 
     pacman -S nodejs
 
 ### Gentoo
-Node.js is available in official gentoo portage tree. You have to unmask it.
+Node.js 可用在官方 gentoo 仓库树里，你需要unmask它。
 
     # emerge -aqv --autounmask-write nodejs
     # etc-update
@@ -79,18 +78,18 @@ Node.js is available in official gentoo portage tree. You have to unmask it.
 
 ### Debian, LMDE
 
-For *Debian sid (unstable)*, [Node.js is available in the official repo](http://packages.debian.org/search?searchon=names&keywords=nodejs).
+对于 *Debian sid (不稳定版)*, [Node.js 可用在官方库](http://packages.debian.org/search?searchon=names&keywords=nodejs).
 
-For *Debian Wheezy (stable)*, [Node.js is available in wheezy-backports](http://packages.debian.org/wheezy-backports/nodejs). To install [backports](http://backports.debian.org/Instructions/), add this to your sources.list (`/etc/apt/sources.list`):
+对于 *Debian Wheezy (最新稳定版)*, [Node.js 可用于 wheezy-backports](http://packages.debian.org/wheezy-backports/nodejs). 为了安装 [backports](http://backports.debian.org/Instructions/)，添加下面一行到 sources.list (`/etc/apt/sources.list`):
 
     deb http://YOURMIRROR.debian.org/debian wheezy-backports main
 
-Then run:
+然后，运行：
 
     apt-get update
     apt-get install nodejs
 
-For *Debian Squeeze (oldstable)*, your best bet is to compile node by yourself (as `root`):
+对于 *Debian Squeeze (旧稳定版)*，最好自己编译 (as `root`):
 
     apt-get install python g++ make
     mkdir ~/nodejs && cd $_
@@ -100,59 +99,59 @@ For *Debian Squeeze (oldstable)*, your best bet is to compile node by yourself (
     make install
 
 ### openSUSE & SLE
-[Node.js stable repos list](https://build.opensuse.org/package/show?package=nodejs&project=devel%3Alanguages%3Anodejs). Also node.js is available in openSUSE:Factory repository.
+[Node.js 稳定版仓库列表](https://build.opensuse.org/package/show?package=nodejs&project=devel%3Alanguages%3Anodejs)。node.js 也可在 openSUSE:Factory repository 中找到。
 
-Available RPM packages for: openSUSE 11.4, 12.1, Factory and Tumbleweed; SLE 11 (with SP1 and SP2 variations).
+可用的 RPM 包: openSUSE 11.4, 12.1, Factory and Tumbleweed; SLE 11 (with SP1 and SP2 variations).
 
-Example install on openSUSE 12.1:
+例如， 安装在openSUSE 12.1上:
 
     sudo zypper ar http://download.opensuse.org/repositories/devel:/languages:/nodejs/openSUSE_12.1/ NodeJSBuildService
     sudo zypper in nodejs nodejs-devel
 
 ### FreeBSD and OpenBSD
-Node.js is available through the ports system.
+Node.js 可通过ports系统使用。
 
     /usr/ports/www/node
 
-Development versions are also available using ports
+开发版本也可使用ports
 
     cd /usr/ports/www/node-devel/ && make install clean
 
-or packages on FreeBSD
+或者FreeBSD上的包
 
     pkg_add -r node-devel
 
-The Node Package Manager is not installed along with Node.js by default on FreeBSD and will be needed for development and installing dependencies.
+在FreeBSD上，Node包管理并不默认与 Node.js 一起安装，但对于开发和安装以来还是需要的。
 
     /usr/ports/www/npm
 
 Also note that FreeBSD 10 using clang will conflict with the occasional build scrpt (which assumes gcc) using node-gyp, and can be resolved by setting an envvar.
+还要注意，FreeBSD 10与偶尔使用的构建脚本（好像是gcc，用于node-gyp）冲突，可以通过设置一个环境变量解决。
 
     CXX=c++
 
 <h2>
 <a id="install-on-windows" name="/getStarted?q=--install-on-windows-" class="anchor" href="http://sailsjs.org/getStarted?q=--install-on-windows-"><span class="mini-icon mini-icon-link"></span></a>
-Install on Windows
+Windows安装
 </h2>
 
-Using [a package](http://nodejs.org/download/):
+使用 [一个包](http://nodejs.org/download/):
 
-_Simply [download Windows Installer](http://nodejs.org/download/)._
+_简单 [下载 Windows 安装器](http://nodejs.org/download/)._
 
-Using [chocolatey](http://chocolatey.org) to install [Node](http://chocolatey.org/packages/nodejs):
+使用 [chocolatey](http://chocolatey.org) 安装 [Node](http://chocolatey.org/packages/nodejs):
 
     cinst nodejs
 
-or for [full install with NPM](http://chocolatey.org/packages/nodejs.install):
+或者 [与NPM一起完全安装](http://chocolatey.org/packages/nodejs.install):
 
     cinst nodejs.install
 
-
-## On to Sails.js!
-Once Node.js is installed on your system, you can go ahead and [install Sails](http://sailsjs.org/get-started#?getting-started-installation).
-
-## Further help!
-We know that sometimes things don't go as planned. If you still have any issue with this, please feel free to visit Node.js's [IRC Channel](irc://irc.freenode.net/node.js) or our own [IRC Channel](irc://irc.freenode.net/sailsjs).
+## 关于 Sails.js
+一旦 Node.js 安装完毕， 就可以继续 [安装 Sails](http://sailsjs.org/get-started#?getting-started-installation)。
+ 
+## 更多帮助
+计划赶不上变化，如果你仍然有问题，请. If you still have any issue with this,  请随时访问 node.js  [IRC频道](irc://irc.freenode.net/node.js) 或者 我们的 [IRC 频道](irc://irc.freenode.net/sailsjs).
 
 
 <docmeta name="displayName" value="New To Node?">

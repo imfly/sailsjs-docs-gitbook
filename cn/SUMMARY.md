@@ -1,66 +1,251 @@
-# Sails.js 官方文档（中文版）
+# Sails.js 官方文档(中英合辑）
 
-- 入门指南
-  * [安装](getting-started/getting-started.md)
-  * [nodejs新手？](getting-started/NewToNode.md)
-  * [sails是什么？](getting-started/WhatIsSails.md)
 - 核心概念
-  * [Assets](concepts/Assets/Assets.md)
-    * [Default Tasks](concepts/Assets/DefaultTasks.md)
-    * Disabling Grunt 
-    * Task Automation
-  - Configuration
-    * Using `.sailsrc` Files
-  * Controllers
-  * Custom Responses
-  * Deployment
-    * FAQ
-    * Hosting
-    * Scaling
-  * File Uploads
-  * Globals
-  * Internationalization
-  * Logging
-    * `sails.log()`
-  * Middleware
-  * Models
-    * Associations
-      * Dominance
-      * Many-to-Many
-      * One Way Association
-      * One-to-Many
-      * One-to-One
-      * Through Associations
-      * Accessing Join Tables
-    * Attributes
-    * Lifecycle callbacks
-    * Models
-    * Query language
-    * Validations
-    * Model Settings
-  * Policies
-  * Routes
-    * Custom Routes
-    * URL Slugs
-  * Security
-    * CORS
-    * CSRF
-    * Clickjacking
-    * Content Security Policy
-    * DDOS
-    * P3P
-    * Socket Hijacking
-    * Strict Transport Security
-    * XSS
-  * Services
-  * Testing
-  * Upgrading
-  * Views
-    * Layouts
-    * Locals
-    * Partials
-    * View Engines
-  * Extending Sails
-    * Adapters
-    * Generators
-    * Hooks
+  - [附件](concepts/Assets/Assets.md)
+      * [默认任务](concepts/Assets/DefaultTasks.md)
+      * [禁用Grunt](concepts/Assets/DisablingGrunt.md)
+      * [自动化任务](concepts/Assets/TaskAutomation.md)
+  - [设置](concepts/Configuration/Configuration.md)
+      * [Localjsfile](concepts/Configuration/localjsfile.md)
+      * [Usingsailsrcfiles](concepts/Configuration/usingsailsrcfiles.md)
+  - [控制器](concepts/Controllers/Controllers.md)
+      * [Generating Controllers](concepts/Controllers/GeneratingControllers.md)
+      * [Routing To Controllers](concepts/Controllers/RoutingToControllers.md)
+  - [定制响应](concepts/Custom Responses/Custom Responses.md)
+      * [Adding Custom Response](concepts/Custom Responses/AddingCustomResponse.md)
+      * [Default Responses](concepts/Custom Responses/DefaultResponses.md)
+  - [部署](concepts/Deployment/Deployment.md)
+      * [FAQ](concepts/Deployment/FAQ.md)
+      * [Hosting](concepts/Deployment/Hosting.md)
+      * [Scaling](concepts/Deployment/Scaling.md)
+  - [文件上传](concepts/File Uploads/File Uploads.md)
+      * [Uploading To Amazon S 3](concepts/File Uploads/uploading-to-amazon-s3.md)
+      * [Uploading To Mongo Gridfs](concepts/File Uploads/uploading-to-mongo-gridfs.md)
+  - [全局变量](concepts/Globals/Globals.md)
+      * [Disabling Globals](concepts/Globals/DisablingGlobals.md)
+  - [国际化](concepts/Internationalization/Internationalization.md)
+      * [Locales](concepts/Internationalization/Locales.md)
+      * [Translating Dynamic Content](concepts/Internationalization/TranslatingDynamicContent.md)
+  - [记录日志](concepts/Logging/Logging.md)
+      * [sails.log](concepts/Logging/sails.log.md)
+  - [中间件](concepts/Middleware/Middleware.md)
+      * [Conventional Defaults](concepts/Middleware/ConventionalDefaults.md)
+  - [ORM](concepts/ORM/ORM.md)
+    - [Associations](concepts/ORM/Associations/Associations.md)
+        * [Dominance](concepts/ORM/Associations/Dominance.md)
+        * [Manyto Many](concepts/ORM/Associations/ManytoMany.md)
+        * [One Way Association](concepts/ORM/Associations/OneWayAssociation.md)
+        * [Oneto Many](concepts/ORM/Associations/OnetoMany.md)
+        * [Oneto One](concepts/ORM/Associations/OnetoOne.md)
+        * [Through Associations](concepts/ORM/Associations/ThroughAssociations.md)
+      * [Attributes](concepts/ORM/Attributes.md)
+      * [Lifecyclecallbacks](concepts/ORM/Lifecyclecallbacks.md)
+      * [Models](concepts/ORM/Models.md)
+      * [ORM](concepts/ORM/ORM.md)
+      * [Querylanguage](concepts/ORM/Querylanguage.md)
+      * [Validations](concepts/ORM/Validations.md)
+      * [Model Settings](concepts/ORM/model-settings.md)
+  - [Policies](concepts/Policies/Policies.md)
+      * [Sails And Passport](concepts/Policies/SailsAndPassport.md)
+  - [Routes](concepts/Routes/Routes.md)
+      * [Route Target Syntax](concepts/Routes/RouteTargetSyntax.md)
+      * [URL Slugs](concepts/Routes/URLSlugs.md)
+  - [Security](concepts/Security/Security.md)
+      * [CORS](concepts/Security/CORS.md)
+      * [CSRF](concepts/Security/CSRF.md)
+      * [Clickjacking](concepts/Security/Clickjacking.md)
+      * [Content Security Policy](concepts/Security/ContentSecurityPolicy.md)
+      * [DDOS](concepts/Security/DDOS.md)
+      * [P 3 P](concepts/Security/P3P.md)
+      * [Socket Hijacking](concepts/Security/SocketHijacking.md)
+      * [Strict Transport Security](concepts/Security/StrictTransportSecurity.md)
+      * [XSS](concepts/Security/XSS.md)
+  - [Services](concepts/Services/Services.md)
+      * [Creating A Service](concepts/Services/CreatingAService.md)
+  - [Sessions](concepts/Sessions/sessions.md)
+  - [Testing](concepts/Testing/Testing.md)
+      * [Code Coverage](concepts/Testing/CodeCoverage.md)
+  - [Upgrading](concepts/Upgrading/Upgrading.md)
+      * [To0.10](concepts/Upgrading/To0.10.md)
+      * [To0.11](concepts/Upgrading/To0.11.md)
+  - [Views](concepts/Views/Views.md)
+      * [Layouts](concepts/Views/Layouts.md)
+      * [Locals](concepts/Views/Locals.md)
+      * [Partials](concepts/Views/Partials.md)
+      * [View Engines](concepts/Views/ViewEngines.md)
+  - [Extending Sails](concepts/extending-sails/extending-sails.md)
+    - [Adapters](concepts/extending-sails/Adapters/Adapters.md)
+        * [Adapter List](concepts/extending-sails/Adapters/adapterList.md)
+        * [Custom Adapters](concepts/extending-sails/Adapters/customAdapters.md)
+    - [Generators](concepts/extending-sails/Generators/Generators.md)
+        * [Custom Generators](concepts/extending-sails/Generators/customGenerators.md)
+        * [Generator List](concepts/extending-sails/Generators/generatorList.md)
+    - [Hooks](concepts/extending-sails/Hooks/Hooks.md)
+      - [Hookspec](concepts/extending-sails/Hooks/hookspec/hookspec.md)
+          * [Configure](concepts/extending-sails/Hooks/hookspec/configure.md)
+          * [Defaults](concepts/extending-sails/Hooks/hookspec/defaults.md)
+          * [Initialize](concepts/extending-sails/Hooks/hookspec/initialize.md)
+          * [Routes](concepts/extending-sails/Hooks/hookspec/routes.md)
+        * [Installablehooks](concepts/extending-sails/Hooks/installablehooks.md)
+        * [Projecthooks](concepts/extending-sails/Hooks/projecthooks.md)
+        * [Usinghooks](concepts/extending-sails/Hooks/usinghooks.md)
+      * [Extending Sails](concepts/extending-sails/extending-sails.md)
+- [入门指南](getting-started/getting-started.md)
+    * [node.js 新手？](getting-started/NewToNode.md)
+    * [sails是什么？](getting-started/WhatIsSails.md)
+- [Reference](reference/README.md)
+  - [Blueprint Api](reference/blueprint-api/blueprint-api.md)
+      * [Add](reference/blueprint-api/Add.md)
+      * [Create](reference/blueprint-api/Create.md)
+      * [Destroy](reference/blueprint-api/Destroy.md)
+      * [Find](reference/blueprint-api/Find.md)
+      * [Find One](reference/blueprint-api/FindOne.md)
+      * [Populate](reference/blueprint-api/Populate.md)
+      * [Remove](reference/blueprint-api/Remove.md)
+      * [Update](reference/blueprint-api/Update.md)
+  - [Cli](reference/cli/cli.md)
+      * [Sailsconsole](reference/cli/sailsconsole.md)
+      * [Sailsdebug](reference/cli/sailsdebug.md)
+      * [Sailsgenerate](reference/cli/sailsgenerate.md)
+      * [Sailslift](reference/cli/sailslift.md)
+      * [Sailsnew](reference/cli/sailsnew.md)
+      * [Sailsversion](reference/cli/sailsversion.md)
+  - [Req](reference/req/req.md)
+      * [req.accepted](reference/req/req.accepted.md)
+      * [req.acceptedCharsets](reference/req/req.acceptedCharsets.md)
+      * [req.acceptedLanguages](reference/req/req.acceptedLanguages.md)
+      * [req.accepts](reference/req/req.accepts.md)
+      * [req.acceptsCharset](reference/req/req.acceptsCharset.md)
+      * [req.acceptsLanguage](reference/req/req.acceptsLanguage.md)
+      * [req.allParams](reference/req/req.allParams.md)
+      * [req.body](reference/req/req.body.md)
+      * [req.cookies](reference/req/req.cookies.md)
+      * [req.file](reference/req/req.file.md)
+      * [req.fresh](reference/req/req.fresh.md)
+      * [req.get](reference/req/req.get.md)
+      * [req.headers](reference/req/req.headers.md)
+      * [req.host](reference/req/req.host.md)
+      * [req.ip](reference/req/req.ip.md)
+      * [req.ips](reference/req/req.ips.md)
+      * [req.is](reference/req/req.is.md)
+      * [req.isSocket](reference/req/req.isSocket.md)
+      * [req.method](reference/req/req.method.md)
+    - [req.options](reference/req/req.options/req.options.md)
+        * [req.options.values](reference/req/req.options/req.options.values.md)
+        * [req.options.where](reference/req/req.options/req.options.where.md)
+      * [req.param](reference/req/req.param.md)
+      * [req.params](reference/req/req.params.md)
+      * [req.path](reference/req/req.path.md)
+      * [req.protocol](reference/req/req.protocol.md)
+      * [req.query](reference/req/req.query.md)
+      * [req.secure](reference/req/req.secure.md)
+      * [req.signedCookies](reference/req/req.signedCookies.md)
+      * [req.socket](reference/req/req.socket.md)
+      * [req.subdomains](reference/req/req.subdomains.md)
+      * [req.url](reference/req/req.url.md)
+      * [req.wantsJSON](reference/req/req.wantsJSON.md)
+      * [req.xhr](reference/req/req.xhr.md)
+  - [Res](reference/res/res.md)
+      * [res.attachment](reference/res/res.attachment.md)
+      * [res.badRequest](reference/res/res.badRequest.md)
+      * [res.clearCookie](reference/res/res.clearCookie.md)
+      * [res.cookie](reference/res/res.cookie.md)
+      * [res.forbidden](reference/res/res.forbidden.md)
+      * [res.get](reference/res/res.get.md)
+      * [res.json](reference/res/res.json.md)
+      * [res.jsonp](reference/res/res.jsonp.md)
+      * [res.location](reference/res/res.location.md)
+      * [res.negotiate](reference/res/res.negotiate.md)
+      * [res.notFound](reference/res/res.notFound.md)
+      * [res.ok](reference/res/res.ok.md)
+      * [res.redirect](reference/res/res.redirect.md)
+      * [res.send](reference/res/res.send.md)
+      * [res.serverError](reference/res/res.serverError.md)
+      * [res.set](reference/res/res.set.md)
+      * [res.status](reference/res/res.status.md)
+      * [res.type](reference/res/res.type.md)
+      * [res.view](reference/res/res.view.md)
+  - [sails.config](reference/sails.config/sails.config.md)
+      * [Miscellaneous](reference/sails.config/miscellaneous.md)
+      * [sails.config.blueprints](reference/sails.config/sails.config.blueprints.md)
+      * [sails.config.bootstrap](reference/sails.config/sails.config.bootstrap.md)
+      * [sails.config.connections](reference/sails.config/sails.config.connections.md)
+      * [sails.config.cors](reference/sails.config/sails.config.cors.md)
+      * [sails.config.csrf](reference/sails.config/sails.config.csrf.md)
+      * [sails.config.globals](reference/sails.config/sails.config.globals.md)
+      * [sails.config.http](reference/sails.config/sails.config.http.md)
+      * [sails.config.i18n](reference/sails.config/sails.config.i18n.md)
+      * [sails.config.log](reference/sails.config/sails.config.log.md)
+      * [sails.config.models](reference/sails.config/sails.config.models.md)
+      * [sails.config.policies](reference/sails.config/sails.config.policies.md)
+      * [sails.config.routes](reference/sails.config/sails.config.routes.md)
+      * [sails.config.session](reference/sails.config/sails.config.session.md)
+      * [sails.config.sockets](reference/sails.config/sails.config.sockets.md)
+      * [sails.config.views](reference/sails.config/sails.config.views.md)
+  - [Waterline](reference/waterline/waterline.md)
+    - [Models](reference/waterline/models/models.md)
+        * [Count](reference/waterline/models/count.md)
+        * [Create](reference/waterline/models/create.md)
+        * [Destroy](reference/waterline/models/destroy.md)
+        * [Find](reference/waterline/models/find.md)
+        * [Find One](reference/waterline/models/findOne.md)
+        * [Find Or Create](reference/waterline/models/findOrCreate.md)
+        * [Native](reference/waterline/models/native.md)
+        * [Query](reference/waterline/models/query.md)
+        * [Stream](reference/waterline/models/stream.md)
+        * [Update](reference/waterline/models/update.md)
+    - [Populated Values](reference/waterline/populated-values/populated-values.md)
+        * [Add](reference/waterline/populated-values/add.md)
+        * [Remove](reference/waterline/populated-values/remove.md)
+    - [Queries](reference/waterline/queries/queries.md)
+        * [Exec](reference/waterline/queries/exec.md)
+        * [Limit](reference/waterline/queries/limit.md)
+        * [Populate](reference/waterline/queries/populate.md)
+        * [Populate All](reference/waterline/queries/populateAll.md)
+        * [Skip](reference/waterline/queries/skip.md)
+        * [Sort](reference/waterline/queries/sort.md)
+        * [Where](reference/waterline/queries/where.md)
+    - [Records](reference/waterline/records/records.md)
+        * [Save](reference/waterline/records/save.md)
+        * [To JSON](reference/waterline/records/toJSON.md)
+        * [To Object](reference/waterline/records/toObject.md)
+        * [Validate](reference/waterline/records/validate.md)
+      * [Waterline](reference/waterline/waterline.md)
+  - [Websockets](reference/websockets/websockets.md)
+    - [Resourceful Pubsub](reference/websockets/resourceful-pubsub/resourceful-pubsub.md)
+        * [Message](reference/websockets/resourceful-pubsub/message.md)
+        * [Publish Add](reference/websockets/resourceful-pubsub/publishAdd.md)
+        * [Publish Create](reference/websockets/resourceful-pubsub/publishCreate.md)
+        * [Publish Destroy](reference/websockets/resourceful-pubsub/publishDestroy.md)
+        * [Publish Remove](reference/websockets/resourceful-pubsub/publishRemove.md)
+        * [Publish Update](reference/websockets/resourceful-pubsub/publishUpdate.md)
+        * [Subscribe](reference/websockets/resourceful-pubsub/subscribe.md)
+        * [Subscribers](reference/websockets/resourceful-pubsub/subscribers.md)
+        * [Unsubscribe](reference/websockets/resourceful-pubsub/unsubscribe.md)
+        * [Unwatch](reference/websockets/resourceful-pubsub/unwatch.md)
+        * [Watch](reference/websockets/resourceful-pubsub/watch.md)
+    - [sails.io.js](reference/websockets/sails.io.js/sails.io.js.md)
+        * [io.socket.on](reference/websockets/sails.io.js/io.socket.on.md)
+        * [socket.delete](reference/websockets/sails.io.js/socket.delete.md)
+        * [socket.get](reference/websockets/sails.io.js/socket.get.md)
+        * [socket.post](reference/websockets/sails.io.js/socket.post.md)
+        * [socket.put](reference/websockets/sails.io.js/socket.put.md)
+        * [socket.request](reference/websockets/sails.io.js/socket.request.md)
+    - [sails.sockets](reference/websockets/sails.sockets/sails.sockets.md)
+        * [sails.sockets.blast](reference/websockets/sails.sockets/sails.sockets.blast.md)
+        * [sails.sockets.broadcast](reference/websockets/sails.sockets/sails.sockets.broadcast.md)
+        * [sails.sockets.emit](reference/websockets/sails.sockets/sails.sockets.emit.md)
+        * [sails.sockets.id](reference/websockets/sails.sockets/sails.sockets.id.md)
+        * [sails.sockets.join](reference/websockets/sails.sockets/sails.sockets.join.md)
+        * [sails.sockets.leave](reference/websockets/sails.sockets/sails.sockets.leave.md)
+        * [sails.sockets.rooms](reference/websockets/sails.sockets/sails.sockets.rooms.md)
+        * [sails.sockets.socketRooms](reference/websockets/sails.sockets/sails.sockets.socketRooms.md)
+        * [sails.sockets.subscribers](reference/websockets/sails.sockets/sails.sockets.subscribers.md)
+      * [Websockets](reference/websockets/websockets.md)
+- [Userguides](userguides/userguides.md)
+    * [Contributing](userguides/contributing.md)
+  - [Deployment](userguides/deployment/deployment.md)
+      * [Nodejitsu](userguides/deployment/nodejitsu.md)
+      * [Openshift](userguides/deployment/openshift.md)
+    * [Guide Stub](userguides/guideStub.md)
+    * [Userguides](userguides/userguides.md)

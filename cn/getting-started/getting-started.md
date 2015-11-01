@@ -7,10 +7,10 @@
 
 在 `Windows` 上(或者在有`Homebrew`的`Mac OS`系统上)，不需要使用`sudo`:
 
-	npm -g install sails
+	npm install -g sails
 
 ## 创建`sails`新工程
-创新新应用:
+创建新应用:
 
 	sails new testProject
 
@@ -19,8 +19,8 @@
 	cd testProject
 	sails lift
 
-这时，如果你访问(http://localhost:1337/) 你会看到默认主页。
+这时，访问 `http://localhost:1337/` 会看到默认主页。
 
-现在，我们可以让`Sails`做点更酷的事情了。
+现在，可以让`Sails`做点更酷的事情了。
 
 <docmeta name="displayName" value="Installation">
