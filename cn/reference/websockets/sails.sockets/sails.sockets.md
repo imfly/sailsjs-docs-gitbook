@@ -6,7 +6,7 @@ Sails exposes several low-level methods for realtime communication with the clie
 
 ### Looking for `sails.io`?
 
-For raw access to the underlying [socket.io](http://socket.io/) singleton, you can still access `sails.io`.  But starting with Sails v0.10, you should use `sails.sockets` for most low-level use-cases involving sockets, since `sails.io` may be deprecated in an upcoming release to allow for more flexibility/extensibility in the underlying socket implementation.
+For raw access to the underlying [socket.io](http://socket.io/) singleton, you can still access `sails.io`.  But starting with Sails v0.11, you should use `sails.sockets` for most low-level use-cases involving sockets, since `sails.io` may be deprecated in an upcoming release to allow for more flexibility/extensibility in the underlying socket implementation.
 
 
 <docmeta name="uniqueID" value="Sockets505826">

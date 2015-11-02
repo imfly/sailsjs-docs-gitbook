@@ -1,79 +1,71 @@
-# Hosting
+# 托管（Hosting）
 
-Here is a non-comprehensive list of Sails.js hosting providers.
+以下是不完整的 Sails.js 托管服务供应商清单。
 
-##### Deploying to Modulus?
+##### 部署到 Modulus？
 
 + http://blog.modulus.io/sails-js
 
-##### Deploying to OpenShift?
-To deploy to OpenShift, you'll need to make some minor modifications to your configuration:
-Open up `config/local.js` in your app folder. In here, you'll need to add the following lines.
+##### 部署到 NodeJitsu？
+要部署到 NodeJitsu，你需要稍微修改设置文档：
+在应用程序文件夹开启 `config/local.js`。你需要加入以下几行到此设置文档。
 
 ```
-	port: process.env.OPENSHIFT_NODEJS_PORT,
-	host: process.env.OPENSHIFT_NODEJS_IP,
+// Port this Sails application will live on
+port: 80,
+host: 'subdomain.jit.su',
 ```
 
-You will also need to install `grunt-cli` with `npm i --save grunt-cli`.
+`host:` 不是默认建立的属性。你需要加入这个属性。当执行 `jitsu deploy` 时，Nodejitsu 会询问你的 `subdomain`
 
-After doing that, create the file `.openshift/action_hooks/pre_start_nodejs` with the following contents. ([source](https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6))
++ https://blog.nodejitsu.com/keep-a-nodejs-server-up-with-forever/
++ https://github.com/balderdashy/sails/issues/455
 
-```
-#!/bin/bash
-export NODE_ENV=production
-
-if [ -f "${OPENSHIFT_REPO_DIR}"/Gruntfile.js ]; then
-    (cd "${OPENSHIFT_REPO_DIR}"; node_modules/grunt-cli/bin/grunt prod)
-fi
-```
-
-Then create the file `/supervisor_opts` with the following contents. This tells OpenShift's supervisor to ignore Sails' `.tmp` directory for the hot reload functionality. ([source](https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6#comment-1318102))
+##### 部署到 OpenShift？
+要部署到 OpenShift，你需要稍微修改设置文档：
+在应用程序文件夹开启 `config/local.js`。你需要加入以下几行到此设置文档。
 
 ```
--i .tmp
+port: process.env.OPENSHIFT_NODEJS_PORT,
+host: process.env.OPENSHIFT_NODEJS_IP,
 ```
 
-You can now `git add . && git commit -a -m "your message" && git push` to deploy to OpenShift.
-
-##### Using DigitalOcean?
+##### 使用 DigitalOcean？
 
 + https://www.digitalocean.com/community/articles/how-to-create-an-node-js-app-using-sails-js-on-an-ubuntu-vps
 + https://www.digitalocean.com/community/articles/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps
 + https://www.digitalocean.com/community/articles/how-to-host-multiple-node-js-applications-on-a-single-vps-with-nginx-forever-and-crontab
 
-##### Deploying to Heroku?
+##### 部署到 Heroku？
 
-+ [Sails.js and Heroku](http://pburtchaell.com/2015/sails/)
-+ [SailsCasts: Deploying a Sails App to Heroku](http://irlnathan.github.io/sailscasts/blog/2013/11/05/building-a-sails-application-ep26-deploying-a-sails-app-to-heroku/)
-+ [Sails.js on Heroku](http://vort3x.me/sailsjs-heroku/)
++ [SailsCasts：Deploying a Sails App to Heroku](http://irlnathan.github.io/sailscasts/blog/2013/11/05/building-a-sails-application-ep26-deploying-a-sails-app-to-heroku/)
 + https://groups.google.com/forum/#!topic/sailsjs/vgqJFr7maSY
 + https://github.com/chadn/heroku-sails
-+ http://dennisrongo.com/deploying-sails-js-to-heroku
++ http://dennisrongo.com/deploying-sails-js-to-heroku/#.UxQKPfSwI9w
 + http://stackoverflow.com/a/20184907/486547
 
-##### Deploying to AWS?
+##### 部署到 AWS？
 
 + http://blog.grio.com/2014/01/your-own-mini-heroku-on-aws.html
 + http://serverfault.com/questions/531560/creating-an-sails-js-application-on-aws-ami-instance
 + http://bussing-dharaharsh.blogspot.com/2013/08/creating-sailsjs-application-on-aws-ami.html
 + http://cloud.dzone.com/articles/how-deploy-nodejs-apps-aws-mac
 
-##### Using PM2?
+##### 使用 PM2？
 
-+ http://devo.ps/blog/goodbye-node-forever-hello-pm2/
++ http://devo.ps/blog/2013/06/26/goodbye-node-forever-hello-pm2.html
 
 
-##### Deploying to CloudControl?
+##### 部署到 CloudControl？
 
 + https://www.cloudcontrol.com/dev-center/Guides/NodeJS/Sailsjs
 
 
 
-##### Getting professional help
+##### 取得专业协助
 
-These days, it's getting easier and easier to deploy powerful applications at scale.  That said, there isn't always time to do these things yourself.
-Sails.js is maintained by my company, [Balderdash](http://balderdash.co), a Node.js consultancy in Austin, TX. If your company needs professional support, reach out and we're happy to help.  The deployment part really isn't that hard, and in most cases, it shouldn't take more than a couple of hours tops.
+这些日子以来，拥有一定技术的情况下，部署强大的应用程序变得越来越简单。尽管如此，你不一定有时间来自己处理这些事情。
+Sails.js 是由我的公司维护，[Balderdash](http://balderdash.co)，一间在美国德州奥斯丁的 Node.js 顾问公司。如果你的公司需要专业协助，我们很乐意提供帮助。部署不是很困难，而且在大多情况下，它不应该超过几个小时。
 
 
 

@@ -1,6 +1,6 @@
-# Disabling Grunt
+# 禁用 Grunt（Disabling Grunt）
 
-To disable Grunt integration in Sails, simply delete your Gruntfile (and/or [`tasks/`](http://sailsjs.org/documentation/anatomy/myApp/tasks) folder). You can also disable the Grunt hook. Just set the `grunt` property to `false` in `.sailsrc` hooks like this:
+要禁用整合在 Sails 的 Grunt，只需删除 Gruntfile（和/或 [`tasks/`](/#/documentation/anatomy/myApp/tasks) 文件夹）。你还可以禁用 Grunt hook。只要像这样在 `.sailsrc` hooks 设置 `grunt` 属性为 `false`：
 
 ```json
 {
@@ -10,24 +10,13 @@ To disable Grunt integration in Sails, simply delete your Gruntfile (and/or [`ta
 }
 ```
 
-### Can I customize this for SASS, Angular, client-side Jade templates, etc?
+### 我可以为 SASS、Angular、用户端 Jade 模板等自定义任务吗？
 
-Yep! Just replace the relevant grunt task in your `tasks/` directory, or add a new one.  Like [SASS](https://github.com/sails101/using-sass) for example.
+是的！只需取代 `tasks/` 目录中对应的 grunt 任务，或新增一个。如同 [SASS](https://github.com/sails101/using-sass) 例子。
 
-If you still want to use Grunt for other purposes, but don't want any of the default web front-end stuff, just delete your project's assets folder and remove the front-end oriented tasks from the `grunt/register/` and `grunt/config/` folders.  You can also run `sails new myCoolApi --no-frontend` to omit the assets folder and front-end-oriented Grunt tasks for future projects.  You can also replace your `sails-generate-frontend` module with alternative community generators, or [create your own](https://github.com/balderdashy/sails-generate-generator).  This allows `sails new` to create the boilerplate for native iOS apps, Android apps, Cordova apps, SteroidsJS apps, etc.
+如果你仍然想使用 Grunt 做其他用途，但不想要任何默认的网页前端工作，只要删除工程的资源文件夹并从 `grunt/register/` 和 `grunt/config/` 文件夹移除前端相关任务。你还可以在往后的工程执行 `sails new myCoolApi --no-frontend` 来省略资源文件夹和前端相关 Grunt 任务。你也可以用社区的产生器或[建立自己的](https://github.com/balderdashy/sails-generate-generator)产生器来取代 `sails-generate-frontend` 模组。这让 `sails new` 可以建立原生 iOS 应用程序、Android 应用程序、Cordova 应用程序、SteroidsJS 应用程序等等的模板。
 
 
 <docmeta name="uniqueID" value="DisablingGrunt970874">
 <docmeta name="displayName" value="Disabling Grunt">
 
-### NOTE:
-
-When removing the grunt hook above you must also specify the following in `.sailsrc` in order for your assets to be served, otherwise all assets will return a `404`.
-
-```json
-{
-    "paths": {
-    	"public": "assets"
-    }
-}
-```

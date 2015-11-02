@@ -1,13 +1,11 @@
-# One-to-One
-### Overview
+# 一对一（One-to-One）
+### 概述
 
-A one-to-one association states that a model may only be associated with one other model. In order
-for the model to know which other model it is associated with, a foreign key must be included in the
-record.
+一对一关联表示一个模型可能只与另一个模型关联。为了使模型知道它与其他哪些模型关联，外键必需包含在记录中。
 
-### One-to-One Example
+### 一对一例子
 
-In this example, we are associating a `Pet` with a `User`. The `User` may only have one `Pet` and viceversa, a `Pet` can only have one `User`. However, in order to query this association from both sides, you will have to create/update both models.
+在这个例子中，我们关联了一个 `Pet` 到 `User`。在这种情况下 `User` 可能只有一个 `Pet`，但是 `Pet` 并不局限于单一 `User`。
 
 
 `myApp/api/models/pet.js`
@@ -16,13 +14,13 @@ In this example, we are associating a `Pet` with a `User`. The `User` may only h
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		color:'STRING',
-		owner:{
-			model:'user'
-		}
-	}
+  attributes: {
+    name:'STRING',
+    color:'STRING',
+    owner:{
+      model:'user'
+    }
+  }
 
 }
 
@@ -35,18 +33,18 @@ module.exports = {
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		age:'INTEGER',
-		pony:{
-			model: 'pet'
-		}
-	}
+  attributes: {
+    name:'STRING',
+    age:'INTEGER',
+    pony:{
+      model: 'pet'
+    }
+  }
 
 }
 ```
 
-Using `sails console`
+使用 `sails console`
 
 ```sh
 
@@ -109,8 +107,8 @@ null { name: 'Mike',
      owner: 1 } }
 
 ```
-### Notes
-> For a more detailed description of this type of association, see the [Waterline Docs](https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-one.md)
+### 注意事项
+> 请查看 [Waterline 文件](https://github.com/balderdashy/waterline-docs/blob/master/associations.md)取得这种类型的关联的更多资讯
 
 
 <docmeta name="uniqueID" value="OnetoOne169258">

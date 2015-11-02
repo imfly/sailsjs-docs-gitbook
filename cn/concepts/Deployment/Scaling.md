@@ -1,47 +1,45 @@
-# Scaling
+# 扩充（Scaling）
 
-If you have the immediate expectation of lots of traffic to your application (or better yet, you already have it!),
-you'll want to set up a scalable architecture that your app can scale as more and more people use it.
+如果你预料到会有大流量到应用程序（或者更好的是，你已经拥有大流量！），你要建立一个可扩充的架构，让应用程序可以随著越来越多人使用而进行扩充。
 
-### Benchmarks
+### 效能基准（Benchmarks）
 
-For the most part, Sails benchmarks exactly like any Connect, Express or Socket.io app.  This has been validated on a few different occasions, most [recently here](http://serdardogruyol.com/?p=111).  If you have your own benchmark you'd like to share, please send a pull request to this page on Github.
+在大多数情况下，Sails 效能与任何 Connect、Express 或 Socket.io 应用程序相同。这已在几个不同的场合下被证实，最近一次是在[这里](http://serdardogruyol.com/?p=111)。如果你有自己的效能基准想和大家分享，请在 Github 发送 pull request 到本页面。
 
 
-### Example architecture
+### 例子架构
 
 ```
-                       Sails.js server
-                             ....                 
-                    /  Sails.js server  \      /  Database (e.g. Mongo, Postgres, etc)
-Load Balancer  <-->    Sails.js server    <-->    Socket store (Redis)
-                    \  Sails.js server  /      \  Session store (Redis)
-                             ....                 
-                       Sails.js server
+　　　　　          Sails.js 服务器
+　　　　　                ....                 
+　　　　　       /  Sails.js 服务器  \      /  资料库（如 Mongo、Postgres 等）
+负载平衡器  <-->    Sails.js 服务器    <-->    Socket 储存区（Redis）
+　　　　　       \  Sails.js 服务器  /      \  会话（Session）储存区（Redis）
+　　　　　                ....                 
+　　　　　          Sails.js 服务器
 ```
 
 
-### Configuring your app for a clustered deployment
+### 设置应用程序的丛集部署
 
-+ Make sure the database(s) for your models (e.g. MySQL, Postgres, Mongo) is scalable (e.g. sharding/cluster)
-+ Configure your app to use a shared session store
-  + Support for redis is built in (see the `adapter` options in `config/session.js`)
-+ IF YOU'RE USING SOCKETS:
-  + Configure your app to use a shared socket store
-    + Support for redis is built in (see the `adapter` options in `config/sockets.js`)
-    + The default Socket.io configuration initially attempts to connect to the server using [long-polling](http://en.wikipedia.org/wiki/Push_technology#Long_polling).  In order for this to work, your server environment [must support](http://socket.io/blog/introducing-socket-io-1-0/#scalability) sticky load-balancing (aka sticky sessions), otherwise the handshake will fail until the connection is upgraded to use Websockets (and only if Websockets are available).
-      On **Heroku**, you must have the sticky load-balancing beta feature [explicitly enabled](https://devcenter.heroku.com/articles/session-affinity).
-      In an environment without stickky load balancing, you will need to set the `transports` setting in [config/sockets.js](https://github.com/balderdashy/sails-docs/blob/v0.11/reference/sails.config/sails.config.sockets.md) to `['websocket']`, forcing it to use websockets only and avoid long-polling.  You'll also need to set the transports in your socket client--if you're using `sails.io.js`, this is as easy as adding a `<script>io.sails.transports=['websocket']</script>` immediately after the `sails.io.js` script include.  For a rather dramatic read on the issue, see [this thread](https://github.com/Automattic/engine.io/issues/261).
-+ Ensure none of the other dependencies you might be using in your app rely on shared memory.
++ 确保模型所使用的资料库（如 MySQL、Postgres、Mongo）具有可扩充性（如分片丛集）
++ 设置应用程序使用共享的会话（Session）储存区
+  + 内建支持 redis（查看 `config/session.js` 内的 `adapter` 选项）
++ 如果你使用 SOCKETS：
+  + 设置应用程序使用共享的 socket 储存区
+  + 内建支持 redis（查看 `config/sockets.js` 内的 `adapter` 选项）
+  + 注意：如果你不想设置 socket 储存区，这种状况下可行的解决方案是在负载平衡器使用黏性会话（sticky sessions）。
++ 确保应用程序可能会使用的其他相依功能没有依赖于共享记忆体。
 
-### Deploying a Sails cluster on multiple servers
+### 部署 Sails 丛集到多台服务器
 
-+ Deploy multiple instances (aka servers running a copy of your app) behind a load balancer
-  + Start up Sails on each instance using `forever`
-  + More on load balancers: <https://en.wikipedia.org/wiki/Load_balancing_(computing)>
-+ Configure your load balancer to terminate SSL requests
-  + Because of this, you won't need to use the SSL configuration in Sails-- the traffic will already be decrypted
++ 在负载平衡器之后部署多个实例（又称服务器执行应用程序的副本）
+  + 在每个实例使用 `forever` 启动 Sails
+  + 更多关于负载平衡器的资讯：http://en.wikipedia.org/wiki/Load_balancing_(computing)
++ 设置负载平衡器终止 SSL 请求
+  + 因为传输已经被解密，你不需要在 Sails 使用 SSL 设置
 
 
 <docmeta name="uniqueID" value="Scaling291270">
 <docmeta name="displayName" value="Scaling">
+

@@ -1,16 +1,11 @@
-# One-to-Many
-### Overview
+# 一对多（One-to-Many）
+### 概述
 
-A one-to-many association states that a model can be associated with many other models. To build this
-association a virtual attribute is added to a model using the `collection` property. In a one-to-many
-association one side must have a `collection` attribute and the other side must contain a `model`
-attribute. This allows the many side to know which records it needs to get when a `populate` is used.
+一对多关联表示一个模型可以关联到许多其他模型。要建立这种关联，要加入一个虚拟属性 `collection` 到模型。在一对多关联中，一边必需有 `collection` 属性，另一边必需包含一个 `modal` 属性。这让「Many」那侧知道当使用 `populate` 时，它需要取得哪些记录。
 
-Because you may want a model to have multiple one-to-many associations on another model a `via` key
-is needed on the `collection` attribute. This states which `model` attribute on the one side of the
-association is used to populate the records.
+因为你可能想要一个模型有多个一对多关联到另一个模型，`collection` 属性必需要有一个 `via` 键。这说明了哪一边的关联 `modal` 属性会用来提供记录。
 
-### One-to-Many Example
+### 一对多例子
 
 `myApp/api/models/pet.js`
 
@@ -18,13 +13,13 @@ association is used to populate the records.
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		color:'STRING',
-		owner:{
-			model:'user'
-		}
-	}
+  attributes: {
+    name:'STRING',
+    color:'STRING',
+    owner:{
+      model:'user'
+    }
+  }
 
 }
 
@@ -36,20 +31,20 @@ module.exports = {
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		age:'INTEGER',
-		pets:{
-			collection: 'pet',
-			via: 'owner'
-		}
-	}
+  attributes: {
+    name:'STRING',
+    age:'INTEGER',
+    pets:{
+      collection: 'pet',
+      via: 'owner'
+    }
+  }
 
 }
 
 ```
 
-Using `sails console`
+使用 `sails console`
 
 ```sh
 
@@ -63,19 +58,19 @@ null { pets: [Getter/Setter],
 
 sails> Pet.create({name:'Pinkie Pie',color:'pink',owner:1}).exec(console.log)
 null { name: 'Pinkie Pie',
-	color: 'pink',
-	owner: 1,
-	createdAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-	updatedAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-	id: 2 }
+  color: 'pink',
+  owner: 1,
+  createdAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
+  updatedAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
+  id: 2 }
 
 sails> Pet.create({name:'Applejack',color:'orange',owner:1}).exec(console.log)
 null { name: 'Applejack',
-	color: 'orange',
-	owner: 1,
-	createdAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-	updatedAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-	id: 4 }
+  color: 'orange',
+  owner: 1,
+  createdAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
+  updatedAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
+  id: 4 }
 
 sails> User.find().populate('pets').exec(function(err,r){console.log(r[0].toJSON())});
 { pets: 
@@ -113,8 +108,8 @@ null [ { name: 'Applejack',
 
 ```
 
-### Notes
-> For a more detailed description of this type of association, see the [Waterline Docs](https://github.com/balderdashy/waterline-docs/blob/master/models/associations/associations.md)
+### 注意事项
+> 请查看 [Waterline 文件](https://github.com/balderdashy/waterline-docs/blob/master/associations.md)取得这种类型的关联的更多资讯
 
 
 <docmeta name="uniqueID" value="OnetoMany478093">

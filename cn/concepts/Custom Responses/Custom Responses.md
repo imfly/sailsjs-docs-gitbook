@@ -1,12 +1,12 @@
-# Custom Responses
+# 自定义回应（Custom Responses）
 
-### Overview
+### 概述
 
-Sails v.10 allows for customizable server responses.  Sails comes with a handful of the most common response types by default.  They can be found in the `/api/responses` directory of your project.  To customize these, simply edit the appropriate .js file.
+Sails v.10 允许自定义服务器回应。Sails 默认附带一些常见的回应类型。可以在工程的 `/api/responses` 目录找到它们。只需编辑对应的 .js 文档，就可以自定义。
 
-As a quick example, consider the following controller action:
+作为一个简单的例子，思考以下的控制器动作：
 
-```javascript
+```
 foo: function(req, res) {
    if (!req.param('id')) {
      res.status(400);
@@ -16,15 +16,15 @@ foo: function(req, res) {
 }
 ```
 
-This code handles a bad request by sending a 400 error status and a short message describing the problem.  However, this code has several drawbacks, primarily:
+这个程序码通过发送一个 400 错误状态及简短问题描述来处理错误请求。然而，这个程序码有几个缺点，主要是：
 
-*  It isn't *normalized*; the code is specific to this instance, and we'd have to work hard to keep the same format everywhere
-*  It isn't *abstracted*; if we wanted to use a similar approach elsewhere, we'd have to copy / paste the code
-*  The response isn't *content-negotiated*; if the client is expecting a JSON response, they're out of luck
+* 它不是*标准化*的：该代码是特定于此情况，我们必须在任何地方努力保持相同的格式
+* 它不是*被分离*的：当我们想要在其他地方使用类似的方法，就需要复制／贴上程序码
+* 它不是*内容协商*的：如果用户端期待一个 JSON 回应，那别指望了
 
-Now, consider this replacement:
+现在，思考一下这个修改：
 
-```javascript
+```
 foo: function(req, res) {
    if (!req.param('id')) {
      res.badRequest('Sorry, you need to tell us the ID of the FOO you want!');
@@ -34,17 +34,60 @@ foo: function(req, res) {
 ```
 
 
-This approach has many advantages:
+这种方法具有许多优点：
 
- - Error payloads are normalized
- - Production vs. Development logging is taken into account
- - Error codes are consistent
- - Content negotiation (JSON vs HTML) is taken care of
- - API tweaks can be done in one quick edit to the appropriate generic response file
+ - 错误被标准化
+ - 有考虑到生产环境与开发环境的日志记录
+ - 错误代码是一致的
+ - 有考虑到内容协商（JSON 与 HTML）
+ - 可在适当的共用回应文档快速的调整 API
 
-### Responses methods and files
+### 回应方法和文档（Responses methods and files）
 
-Any `.js` script saved in the `/api/responses` folder will be executed by calling `res.[responseName]` in your controller.  For example, `/api/responses/serverError.js` can be executed with a call to `res.serverError(errors)`.  The request and response objects are available inside the response script as `this.req` and `this.res`; this allows the actual response function to take arbitrary parameters (like `serverError`'s `errors` parameter).
+任何储存在 `/api/responses` 文件夹的 `.js` 脚本可通过在控制器内呼叫 `res.[responseName]` 来执行。例如，可以通过呼叫 `res.serverError(errors)` 来执行 `/api/responses/serverError.js`。在回应脚本内可以通过 `this.req` 和 `this.res` 取得请求及回应对象；这让实际的回应方法可以取得任意参数。（如 `serverError` 的 `errors` 参数）。
+
+### 默认回应
+
+以下的回应已绑定在所有新的 Sails 应用程序的 `/api/responses` 文件夹内。当用户端期望收到 JSON，会回应一个包含了 HTTP 状态代码的 `status` 键及任何错误相关资讯的标准化 JSON 对象。
+
+#### res.serverError(errors)
+
+这个回应会将错误标准化为适当、可读取的 `Error` 对象。 `errors` 可以是一个或多个字串或 `Error` 对象。它会记录所有错误到 Sails 记录器（通常是终端机），并当用户端期望收到 HTML 时回应 `views/500.*` 检视文档，或当用户端期望收到 JSON 时回应一个 JSON 对象。在开发模式下，错误清单会包含在回应中。在生产环境下，实际的错误会受到抑制。
+
+#### res.badRequest(validationErrors, redirectTo)
+
+对于期望收到 JSON 的请求者，这个回应包含了 400 状态码及被作为 `validationErrors` 所传送的任何相关资料。
+
+对于传统的（非 AJAX）网页表单，当使用者提交无效的表单资料，这个中间件遵循了最佳做法：
+
+ - 首先，一个暂存变数可能被填入了一个字串或语义验证错误对象。
+ - 然后，将使用者重新导向回 `redirectTo`，即发出错误请求的来源 URL。
+ - 还有，控制器和／或检视可能使用暂存变数 `errors` 来显示讯息或突显无效的 HTML 表单栏位。
 
 
-<docmeta name="displayName" value="Custom Responses">
+#### res.notFound()
+
+当请求者期望收到 JSON，这个回应会发送 404 状态码及一个 `{status: 404}` 对象。
+
+否则，将发送位于 `myApp/views/404.*` 内的检视。若找不到检视，那么便发送 JSON 回应。
+
+#### res.forbidden(message)
+
+当请求者期望收到 JSON，这个回应会发送 403 状态码及 `message` 的内容。
+
+否则，将发送位于 `myApp/views/403.*` 内的检视。若找不到检视，那么便发送 JSON 回应。
+
+### 自定义回应
+
+要加入你自己的自定义回应方法，只需新增与方法名称相同的文档到 `/api/responses`。该文档应该导出函数，可以附带任何你喜欢的参数。
+
+```
+/** 
+ * api/responses/myResponse.js
+ *
+ * This will be available in controllers as res.myResponse('foo');
+ */
+
+module.exports = function(message) {
+   
+  var 

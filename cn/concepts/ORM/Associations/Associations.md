@@ -1,6 +1,7 @@
-# Associations
+# 关联（Associations）
 
-With Sails and Waterline, you can associate models across multiple data stores. This means that even if your users live in [PostgreSQL](http://www.postgresql.org/) and their photos live in [MongoDB](http://www.mongodb.com/), you can interact with the data as if they lived together in the same database. You can also have associations that span different [connections](http://sailsjs.org/documentation/reference/sails.config/sails.config.connections.html) (i.e. datastores/databases) using the same adapter.  This comes in handy if, for example, your app needs to access/update legacy recipe data stored in a [MySQL](http://www.mysql.com/) database in your company's data center, but also store/retrieve ingredient data from a brand new MySQL database in the cloud.
+使用 Sails 和 Waterline，你可以跨多个资料储存区来关联模型。这代表，即使你的使用者储存在 [PostgreSQL](http://www.postgresql.org/)，而他们的相片储存在 [MongoDB](http://www.mongodb.com/)，你可以与资料进行互动，就好像他们储存在相同的资料库中。你也可以使用相同桥接器跨越不同[连线](http://beta.sailsjs.org/#/documentation/reference/sails.config/sails.config.connections.html)（即资料储存区／资料库）的关联。举个能派上用场的例子，你的应用程序需要从公司的资料中心的 [MySQL](http://www.mysql.com/) 资料库存取／更新旧的食谱资料，但也要从云端的全新 MySQL 资料库存取材料资料。
 
 <docmeta name="uniqueID" value="Associations913185">
 <docmeta name="displayName" value="Associations">
+

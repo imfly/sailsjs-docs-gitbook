@@ -1,29 +1,30 @@
-# Logging
+# 日志（Logging）
 
-### Overview
-Sails comes with a simple, built-in logger called [`captains-log`](https://github.com/balderdashy/captains-log).  Its usage is purposely very similar to Node's [`console.log`](https://nodejs.org/api/console.html#console_console_log_data), but with a handful of extra features; namely support for multiple log levels with colorized, prefixed console output.
+### 概述
+Sails 内建一个名为 [`captains-log`](https://github.com/balderdashy/captains-log) 的简单日志记录器。它的用法与 Node 的 [`console.log`](http://nodejs.org/api/stdio.html) 非常类似，但有一些额外的功能；即支持在终端机输出多种含前缀字和颜色的日志等级。
 
-### Configuration
-The Sails logger's configuration is located in [`sails.config.log`](http://sailsjs.org/documentation/reference/sails.config/sails.config.log.html), for which a conventional configuration file ([`config/log.js`](http://sailsjs.org/documentation/anatomy/myApp/config/log.js.html)) is bundled in new Sails projects out of the box.
+### 组件设置
+Sails 日志记录器的设置在 [`sails.config.log`](http://beta.sailsjs.org/#/documentation/reference/sails.config/sails.config.log.html)，照约定默认对应 Sails 工程的设置文档（[`config/log.js`](http://beta.sailsjs.org/#/documentation/anatomy/myApp/config/log.js.html)）。
 
-When configured at a given log level, Sails will output log messages that are output at a level at or above the currently configured level. This log level is normalized and also applied to the generated output from socket.io, Waterline, and other dependencies. The hierarchy of log levels and their relative priorities is summarized by the chart below:
+当设置了一个日志输出等级，Sails 会在相同或高于目前设置等级时输出日志讯息。这个日志等级已标准化，且适用于从 socket.io、Waterline 及其它相依功能产生输出。日志等级和相应的优先权分级结构总结为以下图表：
 
-| Priority | level     | Log fns visible   |
-|----------|-----------|-------------------|
-| 0        | silent    | N/A
-| 1        | error     | `.error()`            |
-| 2        | warn      | `.warn()`, `.error()` |
-| 3        | debug     | `.debug()`, `.warn()`, `.error()` |
-| 4        | info      | `.info()`, `.debug()`, `.warn()`, `.error()` |
-| 5        | verbose   | `.verbose()`, `.info()`, `.debug()`, `.warn()`, `.error()` |
-| 6        | silly     | `.silly()`, `.verbose()`, `.info()`, `.debug()`, `.warn()`, `.error()` |
+| 优先权 | 等级      | 可见的日志          |
+|-------|-----------|-------------------|
+| 0     | silent    | 无 |
+| 1     | error     | `.error()` |
+| 2     | warn      | `.warn()`, `.error()` |
+| 3     | debug     | `.debug()`, `.warn()`, `.error()` |
+| 4     | info      | `.info()`, `.debug()`, `.warn()`, `.error()` |
+| 5     | verbose   | `.verbose()`, `.info()`, `.debug()`, `.warn()`, `.error()` |
+| 6     | silly     | `.silly()`, `.verbose()`, `.info()`, `.debug()`, `.warn()`, `.error()` |
 
 
-#### Notes
-+ The default log level is "info".  When your app's log level is set to "info", Sails logs limited information about the server/app's status.
-+ When the log level is set to "silly", Sails outputs internal information on which routes are being bound and other detailed framework lifecycle information, diagnostics, and implementation details.
-+ When the log level is set to "verbose", Sails logs Grunt output, as well as much more detailed information on the routes, models, hooks, etc. that were loaded.
+#### 注意事项
++ 默认的日志等级是「info」。当你设置应用程序的日志等级为「info」，Sails 会记录关于服务器／应用程序状态的有限资讯。
++ 当日志等级设置为「silly」，Sails 会记录已被绑定的路由、其它详细的框架生命周期资讯、诊断和实践细节等内部资讯。
++ 当日志等级设置为「verbose」，Sails 会记录 Grunt 的输出，以及更详细的路由、模型、挂勾（hook）等被载入的资讯。
 
 
 <docmeta name="uniqueID" value="Logging277763">
 <docmeta name="displayName" value="Logging">
+

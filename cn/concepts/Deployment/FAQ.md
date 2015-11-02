@@ -1,16 +1,16 @@
-# FAQ
+# 常见问题（FAQ）
 
 
-##### Can I use environment variables?
+##### 我可以使用环境变数吗？
 
-Yes! You can also configure the `port` and `environment` settings in Sails using environment variables.
+你可以在 Sails 使用环境变数设置 `port` 和 `environment`。
 `NODE_ENV=production sails lift`
 `PORT=443 sails lift`
 
-##### Where do I put my production database credentials?  Other settings?
+##### 在哪边放置我的生产环境资料库凭证（credentials）或其它设置？
 
-For your other deployment/machine-specific settings, namely any kind of credentials, you should use `config/local.js`.  
-It's included in your `.gitignore` file by default so you don't inadvertently commit your credentials to your code repository.
+对于其它部署／特定机器的设置，也就是任何形式的凭证，你应该使用 `config/local.js`。
+它默认包含在 `.gitignore` 文档，这样你就不会无意中提交凭证到程序码储存库。
 
 **config/local.js**
 ```javascript
@@ -33,27 +33,18 @@ module.exports = {
 }
 ```
 
-##### How do I get my Sails app on the server?
-Is your Node.js instance already spun up?  When you have the ip address, you can go ahead and ssh onto it, then `sudo npm install -g forever` to install Sails and forever for the first time.  
+##### 如何让应用程序运作在服务器上？
+你的 Node.js 实例已正常运作吗？在第一次的时候，当你有一个 IP 位址，便可以 ssh 连线到它，执行 `sudo npm install -g forever` 来安装 Sails 和 forever。
 
-Then `git clone` your project (or `scp` it onto the server if it's not in a git repo) into a new folder on the server and cd into it, and `forever start app.js`
+然后，`git clone` 你的工程（或 `scp` 到服务器，如果它不在 git 储存库中）到服务器并 `cd` 进入，接著 `forever start app.js`。
 
 
-### Performance Benchmarks
+### 效能基准
 
-Performance in Sails is comparable to what you'd expect from a standard Node.js/Express application.  In other words, fast!  We've done some optimizations ourselves in Sails and Waterline, but primarily, our focus has been on not messing up what was already really fast.  Above all, we have @ry, @visionmedia, @isaacs, #v8, @joyent and the rest of the Node.js core team to thank.
+Sails 的效能可与你所期望的标准 Node.js/Express 应用程序相比。换句话说，就是「快」！我们在 Sails 和 Waterline 做了一些优化，但本质上，我们的重点是不要把已经非常快的东西搞糟了。最重要的，我们要感谢 @ry、@visionmedia、@isaacs、#v8、@joyent 和在 Node.js 核心团队的其他成员。
 
 + http://serdardogruyol.com/?p=111
 
-Issues [#3099](https://github.com/balderdashy/sails/issues/3099) and [#2779](https://github.com/balderdashy/sails/issues/2779) are about a memory leak. It resides in the `express-session` module used by default, which stores sessions in-memory.
-To disable it, make sure that you disable sessions in the `.sailsrc`:
-```
-"hooks": {
-  "session": false
-}
-```
-
-You may also use an alternative (redis/mongo/cookies) to store sessions.
 
 <docmeta name="uniqueID" value="FAQ475097">
 <docmeta name="displayName" value="FAQ">

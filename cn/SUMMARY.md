@@ -1,5 +1,8 @@
 # Sails.js 官方文档(中英合辑）
 
+- [入门指南](getting-started/getting-started.md)
+    * [node.js 新手？](getting-started/NewToNode.md)
+    * [sails是什么？](getting-started/WhatIsSails.md)
 - 核心概念
   - [附件](concepts/Assets/Assets.md)
       * [默认任务](concepts/Assets/DefaultTasks.md)
@@ -90,9 +93,6 @@
         * [Projecthooks](concepts/extending-sails/Hooks/projecthooks.md)
         * [Usinghooks](concepts/extending-sails/Hooks/usinghooks.md)
       * [Extending Sails](concepts/extending-sails/extending-sails.md)
-- [入门指南](getting-started/getting-started.md)
-    * [node.js 新手？](getting-started/NewToNode.md)
-    * [sails是什么？](getting-started/WhatIsSails.md)
 - [Reference](reference/README.md)
   - [Blueprint Api](reference/blueprint-api/blueprint-api.md)
       * [Add](reference/blueprint-api/Add.md)

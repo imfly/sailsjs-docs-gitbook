@@ -72,7 +72,7 @@ window.onload = function subscribeAndListen(){
 
 function makeNew(){
 
-    // Send the new users name to the 'testSocket' action on the 'users' controller
+    // Send the new users name to the 'testSocket' action on the 'users' contoller
 
     socket.get('/users/testSocket/',{name:'Walter'});
 }

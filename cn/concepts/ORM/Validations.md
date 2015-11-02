@@ -11,7 +11,7 @@ Validations are handled by [Anchor](https://github.com/balderdashy/anchor), a th
 |-------------------|---------------------|----------------|
 |after| check if `string` date in this record is after the specified `Date` | must be valid javascript `Date` |
 |alpha| check if `string` in this record contains only letters (a-zA-Z) | |
-|alphadashed|| does this `string` contain only letters and/or dashes? |
+|alphadashed|| does this `string` contain only numbers and/or dashes? |
 |alphanumeric| check if `string` in this record contains only letters and numbers. | |
 |alphanumericdashed| does this `string` contain only numbers and/or letters and/or dashes? | |
 |array| is this a valid javascript `array` object? | strings formatted as arrays won't pass |
@@ -36,7 +36,7 @@ Validations are handled by [Anchor](https://github.com/balderdashy/anchor), a th
 |integer| same as above | Im not sure why there are two of these. |
 |ip| check if `string` in this record is a valid IP (v4 or v6) | |
 |ipv4| check if `string` in this record is a valid IP v4 | |
-|ipv6| check if `string` in this record is a valid IP v6 | |
+|ipv6| check if `string` in this record is aa valid IP v6 | |
 |is| | something to do with REGEX|
 |json| does a try&catch to check for valid JSON. | |
 |len| is `integer` > param1 && < param2 | Where are params defined? |
@@ -54,73 +54,4 @@ Validations are handled by [Anchor](https://github.com/balderdashy/anchor), a th
 |null| check if `string` in this record is null | |
 |number| is this a number? | NaN is considered a number |
 |numeric| checks if `string` in this record contains only numbers | |
-|object| checks if this attribute is the language type of Object | Passes for arrays, functions, objects, regexes, new Number(0), and new String('') ! |
-|regex| | |
-|protected| Should this attribute be removed when `toJSON` is called on a model instance?  | |
-|required| Must this model attribute contain valid data before a new record can be created? | |
-|string| is this a `string` ?| |
-|text| okay, well is <i>this</i> a `string` ?| |
-|truthy| Would a Javascript engine register a value of `false` on this? | |
-|undefined| Would a javascript engine register this thing as have the value 'undefined' ? | |
-|unique| Checks to see if a new record model attribute is unique.  | |
-|uppercase| checks if `string` in this record is uppercase | |
-|url| checks if `string` in this record is a URL | |
-|urlish| Does the `string` in this record contain something that looks like a route, ending with a file extension? | /^\s([^\/]+\.)+.+\s*$/g |
-|uuid| checks if `string` in this record is a UUID (v3, v4, or v5) | |
-|uuidv3| checks if `string` in this record is a UUID (v3) | |
-|uuidv4| checks if `string` in this record is a UUID (v4) | |
-
-
-
-
-### Custom Validation Rules
-
-You can define your own types and their validation with the types object. It's possible to access and compare values to other attributes (with "this"). This allows you to move validation business logic into your models and out of your controller logic.
-
-> Note that your own type always have to be a variant of the basic data-types ("string", "int", "json", ...)
-
-#### Example Model
-
-```javascript
-// api/models/foo
-module.exports = {
-
-  types: {
-    is_point: function(geoLocation){
-      return geoLocation.x && geoLocation.y
-    },
-    password: function(password) {
-      return password === this.passwordConfirmation;
-    }
-  },
-  attributes: {
-    firstName: {
-      type: 'string',
-      required: true,
-      minLength: 5,
-      maxLength: 15
-    },
-    location: {
-      //note, that the base type (json) still has to be defined
-      type: 'json',
-      is_point: true
-    },
-    password: {
-      type: 'string',
-      password: true
-    },
-    passwordConfirmation: {
-      type: 'string'
-    }
-
-  }
-}
- ```
-
-
-### Custom Validation Messages
-Out of the box, Sails.js does not support custom validation messages. However, for Sails v0.11.0+ a [Hook](http://sailsjs.org/documentation/concepts/extending-sails/Hooks) is available: [sails-hook-validator](https://github.com/lykmapipo/sails-hook-validation). Details regarding its usage can be found in the [sails-hook-validator](https://github.com/lykmapipo/sails-hook-validation) repository.
-
-
-<docmeta name="uniqueID" value="Validations576587">
-<docmeta name="displayName" value="Validations">
+|object| checks if this attribute is the language type of Object | Passes for arrays, functions, objects, regexes, new Number(0), and new String

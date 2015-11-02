@@ -1,8 +1,7 @@
 # req.signedCookies
-An object containing all the signed cookies from the request object. A signed cookie is protected against modification by the client. This protection is provided by a base64 encoded HMAC of the cookie value. When retrieving the cookie, if the HMAC signature does not match based on the cookie's value, then the cookie is not available as a member of the `req.signedCookies` object
 
 ### Purpose
-An object containing all of the signed cookies from this request (`req`).
+An object containing all of the [**signed cookies**](https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md) from this request (`req`).
 
 
 ### Usage
@@ -13,15 +12,10 @@ req.signedCookies;
 
 
 ### Example
-Adding a signed cookie named "chocolatechip" with value "Yummy:
+Assuming the request contained a signed cookie named "chocolatechip" with value "Yummy:
 
 ```javascript
-res.cookie('chocolatechip', 'Yummy', {signed:true});
-```
-
-Retrieving the cookie:
-```javascript
-req.signedCookies.chocolatechip;
+req.cookies.chocolatechip;
 // "Yummy"
 ```
 

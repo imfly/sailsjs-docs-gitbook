@@ -54,23 +54,23 @@ Linux安装
 
 ### Fedora
 
-Fedora 18 和更新版本，[Node.js](https://apps.fedoraproject.org/packages/nodejs) and [npm](https://apps.fedoraproject.org/packages/npm) 可用。仅仅使用您喜欢的图形包管理器，或在命令行安装即可:
+Fedora 18 和更新版本，提供了[Node.js](https://apps.fedoraproject.org/packages/nodejs) 和 [npm](https://apps.fedoraproject.org/packages/npm)。仅仅使用您喜欢的图形包管理器，或在命令行安装即可:
 
     sudo yum install npm
 
 ### RHEL/CentOS/Scientific Linux 6
 
-Node.js and npm 可用于 [Fedora Extra Packages for Enterprise Linux (EPEL)](https://fedoraproject.org/wiki/EPEL) _测试_ 库。如果你还没有这么做，首先[启用EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F)，然后运行下面的命令：
+[Fedora Extra Packages for Enterprise Linux (EPEL)](https://fedoraproject.org/wiki/EPEL) 提供了Node.js and npm _测试_ 库。如果你还没有这么做，首先[启用EPEL](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F)，然后运行下面的命令：
 
     su -c 'yum --enablerepo=epel-testing install npm'
 
 ### Arch Linux
-Node.js 可用在社区库.
+社区库提供了Node.js
 
     pacman -S nodejs
 
 ### Gentoo
-Node.js 可用在官方 gentoo 仓库树里，你需要unmask它。
+官方 gentoo 仓库树里提供了Node.js ，你需要unmask它。
 
     # emerge -aqv --autounmask-write nodejs
     # etc-update
@@ -78,9 +78,9 @@ Node.js 可用在官方 gentoo 仓库树里，你需要unmask它。
 
 ### Debian, LMDE
 
-对于 *Debian sid (不稳定版)*, [Node.js 可用在官方库](http://packages.debian.org/search?searchon=names&keywords=nodejs).
+对于 *Debian sid (不稳定版)*, [官方库提供了Node.js](http://packages.debian.org/search?searchon=names&keywords=nodejs).
 
-对于 *Debian Wheezy (最新稳定版)*, [Node.js 可用于 wheezy-backports](http://packages.debian.org/wheezy-backports/nodejs). 为了安装 [backports](http://backports.debian.org/Instructions/)，添加下面一行到 sources.list (`/etc/apt/sources.list`):
+对于 *Debian Wheezy (最新稳定版)*, [wheezy-backports 提供了Node.js](http://packages.debian.org/wheezy-backports/nodejs). 为了安装 [backports](http://backports.debian.org/Instructions/)，添加下面一行到 sources.list (`/etc/apt/sources.list`):
 
     deb http://YOURMIRROR.debian.org/debian wheezy-backports main
 
@@ -125,7 +125,6 @@ Node.js 可通过ports系统使用。
 
     /usr/ports/www/npm
 
-Also note that FreeBSD 10 using clang will conflict with the occasional build scrpt (which assumes gcc) using node-gyp, and can be resolved by setting an envvar.
 还要注意，FreeBSD 10与偶尔使用的构建脚本（好像是gcc，用于node-gyp）冲突，可以通过设置一个环境变量解决。
 
     CXX=c++
@@ -137,7 +136,7 @@ Windows安装
 
 使用 [一个包](http://nodejs.org/download/):
 
-_简单 [下载 Windows 安装器](http://nodejs.org/download/)._
+_简单 [下载 Windows 安装器](http://nodejs.org/download/)_
 
 使用 [chocolatey](http://chocolatey.org) 安装 [Node](http://chocolatey.org/packages/nodejs):
 

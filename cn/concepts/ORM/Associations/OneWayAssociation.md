@@ -1,11 +1,11 @@
-# One Way Association
-### Overview
+# 单向关联（One Way Association）
+### 概述
 
-A one way association is where a model is associated with another model.  You could query that model and populate to get the associated model.  You can't however query the associated model and populate to get the associating model.
+单向关联就是一个模型关联到另一个模型。你可以查询该模型并提供所关联的模型。但是，你不能查询被关联的模型并提供关联它的模型。
 
-### One Way Example
+### 单向关联例子
 
-In this example, we are associating a `User` with a `Pet` but not a `Pet` with a `User`.
+在这个例子中，我们关联了一个 `User` 到 `Pet`，而不是 `Pet` 到 `User`。
 
 `myApp/api/models/pet.js`
 
@@ -13,10 +13,10 @@ In this example, we are associating a `User` with a `Pet` but not a `Pet` with a
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		color:'STRING'
-	}
+  attributes: {
+    name:'STRING',
+    color:'STRING'
+  }
 
 }
 
@@ -28,19 +28,19 @@ module.exports = {
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		age:'INTEGER',
-		pony:{
-			model: 'pet'
-		}
-	}
+  attributes: {
+    name:'STRING',
+    age:'INTEGER',
+    pony:{
+      model: 'pet'
+    }
+  }
 
 }
 
 ```
 
-Using `sails console`
+使用 `sails console`
 
 ```sh
 
@@ -74,11 +74,10 @@ null [ { name: 'Mike',
 
 
 ```
-### Notes
-> For a more detailed description of this type of association, see the [Waterline Docs](https://github.com/balderdashy/waterline-docs/blob/master/models/associations/associations.md)
+### 注意事项
+> 请查看 [Waterline 文件](https://github.com/balderdashy/waterline-docs/blob/master/associations.md)取得这种类型的关联的更多资讯
 
-
-> Because we have only formed an association on one of the models, a `Pet` has no restrictions on the number of `User` models it can belong to. If we wanted to, we could change this and associate the `Pet` with exactly one `User` and the `User` with exactly one `Pet`.
+> 因为我们只形成一个关联于一个模型，`Pet` 没有归属于 `User` 模型的数量限制。如果我们想要，我们可以改变这一点，让 `Pet` 正好关联到一个 `User` ，且 `User` 正好关联到一个 `Pet`。
 
 <docmeta name="uniqueID" value="OneWayAssociation708096">
 <docmeta name="displayName" value="One Way Association">

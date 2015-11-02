@@ -1,19 +1,20 @@
-# Assets
+# 资源（Assets）
 
-### Overview
+### 概述
 
-Assets refer to [static files](http://en.wikipedia.org/wiki/Static_web_page) (js, css, images, etc) on your server that you want to make accessible to the outside world. In Sails, these files are placed in the [`assets/`](http://sailsjs.org/documentation/anatomy/myApp/assets) directory, where they are processed and synced to a hidden temporary directory (`.tmp/public/`) when you lift your app. The contents of this `.tmp/public` folder are what Sails actually serves - roughly equivalent to the "public" folder in [express](https://github.com/expressjs), or the "www" folder you might be familiar with from other web servers like Apache.  This middle step allows Sails to prepare/pre-compile assets for use on the client - things like LESS, CoffeeScript, SASS, spritesheets, Jade templates, etc.
+资源指的是在你的服务器上想让外界存取的[静态文档](http://en.wikipedia.org/wiki/Static_web_page)（js、css、图档等等）。在 Sails，这些文档都放在 [`assets/`](http://beta.sailsjs.org/#/documentation/anatomy/myApp/assets) 目录，当你启动应用程序，他们会被处理并同步到一个隐藏的暂存目录(`.tmp/public/`)。这个 `.tmp/public` 文件夹就是 Sails 实际提供的内容，大致等同于 [express](https://github.com/expressjs) 的「public」文件夹，或是其他你或许熟悉的网站服务器如 Apache 的「www」文件夹。这中间的过程允许 Sails 准备或预先编译在用户端上使用的资源，像是 LESS、CoffeeScript、SASS、spritesheets、Jade 模板等等。
 
-### Static middleware
+### 静态中间件（Static middleware）
 
-Behind the scenes, Sails uses the [static middleware](http://www.senchalabs.org/connect/static.html) from Express to serve your assets. You can configure this middleware (e.g. cache settings) in [`/config/http.js`](http://sailsjs.org/documentation/reference/sails.config/sails.config.http.html).
+在幕后，Sails 使用 Express 的[静态中间件](http://www.senchalabs.org/connect/static.html)来提供你的资源。你可以在 [`/config/http.js`](/#/documentation/reference/sails.config/sails.config.http.html) 设置这个中间件（例如 cache 设置）。
 
 ##### `index.html`
-Like most web servers, Sails honors the `index.html` convention.  For instance, if you create `assets/foo.html` in a new Sails project, it will be accessible at `http://localhost:1337/foo.html`.  But if you create `assets/foo/index.html`, it will be available at both `http://localhost:1337/foo/index.html` and `http://localhost:1337/foo`.
+如同大多数网页服务器，Sails 实践了 `index.html` 约定。举例来说，如果你在新的 Sails 工程建立 `assets/foo.html`，便可通过 `http://localhost:1337/foo.html` 存取。但是，如果你建立 `assets/foo/index.html`，则可通过 `http://localhost:1337/foo/index.html` 及 `http://localhost:1337/foo` 存取。
 
-##### Precedence
-It is important to note that the static [middleware](http://stephensugden.com/middleware_guide/) is installed **after** the Sails router.  So if you define a [custom route](http://sailsjs.org/documentation/concepts/Routes?q=custom-routes), but also have a file in your assets directory with a conflicting path, the custom route will intercept the request before it reaches the static middleware. For example, if you create `assets/index.html`, with no routes defined in your [`config/routes.js`](http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html) file, it will be served as your home page.  But if you define a custom route, `'/': 'FooController.bar'`, that route will take precedence.
+##### 优先权
+重要的是需注意静态[中间件](http://stephensugden.com/middleware_guide/)是安装在 Sails 路由**之后**。所以，如果你定义了一个[自定义路由](/#/documentation/concepts/Routes?q=custom-routes)，但在你的资源目录也有文档与该路径冲突，自定义路由会在到达静态中间件前拦截请求。举例来说，如果你建立 `assets/index.html` 且没有定义路由在 [`config/routes.js`](/#/documentation/reference/sails.config/sails.config.routes.html) 文档，它会被当成你的首页。但是如果你定义一个自定义路由 `'/': 'FooController.bar'`，将优先采用此路由。
 
 
 <docmeta name="uniqueID" value="Assets220313">
 <docmeta name="displayName" value="Assets">
+

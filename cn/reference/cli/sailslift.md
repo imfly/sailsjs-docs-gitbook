@@ -21,7 +21,7 @@ info: Starting app...
 info: 
 info: 
 info:    Sails              <|
-info:    v0.10.3             |\
+info:    v0.11.3             |\
 info:                       /|.\
 info:                      / || \
 info:                    ,'  |'  \

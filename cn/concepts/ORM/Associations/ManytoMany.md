@@ -1,24 +1,19 @@
-# Many-to-Many
-### Overview
+# 多对多（Many-to-Many）
+### 概述
 
-A many-to-many association states that a model can be associated with many other models and vice-versa.
-Because both models can have many related models a new join table will need to be created to keep track
-of these relations.
+多对多关联表示一个模型可以关联到许多其他模型，反之亦然。
+因为两个模型都可以有许多关联模型，将需要建立一个新连接资料表来追踪这些关联。
 
-Waterline will look at your models and if it finds that two models both have collection attributes that
-point to each other, it will automatically build up a join table for you.
+Waterline 会看著你的模型，当它找到两个模型都有 collection 属性指向彼此时，会自动为你建立连接资料表。
 
-Because you may want a model to have multiple many-to-many associations on another model a `via` key
-is needed on the `collection` attribute. This states which `model` attribute on the one side of the
-association is used to populate the records.
+因为你可能想要一个模型有多个多对多关联到另一个模型，`collection` 属性必需要有一个 `via` 键。这说明了哪一边的关联 `modal` 属性会用来提供记录。
 
-Using the `User` and `Pet` example lets look at how to build a schema where a `User` may have many
-`Pet` records and a `Pet` may have multiple owners.
+使用 `User` 和 `Pet` 例子让我们来看看如何建立「一个 `User` 可能有很多 `Pet` 记录，和 `Pet` 可能有多个主人」的架构。
 
 
-### Many-to-Many Example
+### 多对多例子
 
-In this example, we will start with an array of users and an array of pets.  We will create records for each element in each array then associate all of the `Pets` with all of the `Users`.  If everything worked properly, we should be able to query any `User` and see that they 'own' all of the `Pets`.  Furthermore, we should be able to query any `Pet` and see that it is 'owned' by every `User`.
+在这个例子中，我们将由 users 阵列和 pets 阵列开始。我们将建立资料到阵列的每个元素，然后关联所有的 `Pets` 与所有的 `Users`。如果一切运作正常，我们应该能够查询任何 `User`，看到他们「拥有」所有的 `Pets`。此外，我们应该能够查询任何 `Pet`，看到它被所有 `User` 拥有。
 
 
 `myApp/api/models/pet.js`
@@ -28,16 +23,17 @@ In this example, we will start with an array of users and an array of pets.  We 
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		color:'STRING',
+  attributes: {
+    name:'STRING',
+    color:'STRING',
 
-		// Add a reference to User
-		owners: {
-			collection: 'user',
-			via: 'pets'
-		}
-	}
+    // 加入一个参考到 User
+    owners: {
+      collection: 'user',
+      via: 'pets',
+      dominant:true
+    }
+  }
 }
 
 ```
@@ -48,16 +44,16 @@ module.exports = {
 
 module.exports = {
 
-	attributes: {
-		name:'STRING',
-		age:'INTEGER',
+  attributes: {
+    name:'STRING',
+    age:'INTEGER',
 
-		// Add a reference to Pet
-		pets:{
-			collection: 'pet',
-			via: 'owners'
-		}
-	}
+    // 加入一个参考到 Pet
+    pets:{
+      collection: 'pet',
+      via: 'owners'
+    }
+  }
 
 }
 
@@ -70,15 +66,14 @@ module.exports = {
 
 module.exports.bootstrap = function (cb) {
 
-// After we create our users, we will store them here to associate with our pets
+// 在建立 users 之后，我们会在这储存他们来关联 pets
 var storeUsers = []; 
 
 var users = [{name:'Mike',age:'16'},{name:'Cody',age:'25'},{name:'Gabe',age:'107'}];
 var ponys = [{ name: 'Pinkie Pie', color: 'pink'},{ name: 'Rainbow Dash',color: 'blue'},{ name: 'Applejack', color: 'orange'}]
 
-// This does the actual associating.
-// It takes one Pet then iterates through the array of newly created Users, adding each one to it's join table
-var associate = function(onePony,cb){
+// 这边进行实际的关联。
+// 它需要一个宠物，然后迭代新建立的 Users 阵列，加入每一个到它的连接资料表var associate = function(onePony,cb){
   var thisPony = onePony;
   var callback = cb;
 
@@ -93,38 +88,38 @@ var associate = function(onePony,cb){
 };
 
 
-// This callback is run after all of the Pets are created.
-// It sends each new pet to 'associate' with our Users  
+// 这个回呼会在所有 Pets 建立后执行。
+// 它送出每个新宠物和我们的 Users 到 'associate'
 var afterPony = function(err,newPonys){
   while (newPonys.length){
     var thisPony = newPonys.pop();
     var callback = function(ponyID){
       console.log('Done with pony ',ponyID)
     }
-    associate(thisPony,callback)
+    associate(thisPony,callback);
   }
   console.log('Everyone belongs to everyone!! Exiting.');
 
-  // This callback lets us leave bootstrap.js and continue lifting our app!
-  return cb()
+  // 这个回呼让我们离开 bootstrap.js 并继续启动应用程序！
+  return cb();
 };
 
-// This callback is run after all of our Users are created.
-// It takes the returned User and stores it in our storeUsers array for later.
+// 这个回呼会在所有 Users 建立后执行。
+// 它需要返回的 User 并储存到 storeUsers 阵列供稍后使用。
 var afterUser = function(err,newUsers){
   while (newUsers.length)
-    storeUsers.push(newUsers.pop())
+    storeUsers.push(newUsers.pop());
 
-  Pet.create(ponys).exec(afterPony)
+  Pet.create(ponys).exec(afterPony);
 };
 
 
-User.create(users).exec(afterUser)
+User.create(users).exec(afterUser);
 
 };
 ```
 
-Lifting our app with `sails console`
+使用 `sails console` 启动应用程序
 
 ```sh
 
@@ -151,182 +146,4 @@ info: ( to exit, type <CTRL>+<C> )
 sails> null { name: 'Gabe',
   age: 107,
   createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: 'Cody',
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: 'Mike',
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-null { name: 'Gabe',
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: 'Cody',
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: 'Mike',
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-null { name: 'Gabe',
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: 'Cody',
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: 'Mike',
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-sails> Pet.find().populate('owners').exec(function(e,r){while(r.length){var thisPet=r.pop();console.log(thisPet.toJSON())}});
-{ owners: 
-   [ { name: 'Mike',
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Cody',
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Gabe',
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Applejack',
-  color: 'orange',
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-{ owners: 
-   [ { name: 'Mike',
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Cody',
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Gabe',
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Rainbow Dash',
-  color: 'blue',
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-{ owners: 
-   [ { name: 'Mike',
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Cody',
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Gabe',
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Pinkie Pie',
-  color: 'pink',
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-sails> User.find().populate('pets').exec(function(e,r){while(r.length){var thisUser=r.pop();console.log(thisUser.toJSON())}});
-{ pets: 
-   [ { name: 'Pinkie Pie',
-       color: 'pink',
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Rainbow Dash',
-       color: 'blue',
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Applejack',
-       color: 'orange',
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Gabe',
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-{ pets: 
-   [ { name: 'Pinkie Pie',
-       color: 'pink',
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Rainbow Dash',
-       color: 'blue',
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Applejack',
-       color: 'orange',
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Cody',
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-{ pets: 
-   [ { name: 'Pinkie Pie',
-       color: 'pink',
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Rainbow Dash',
-       color: 'blue',
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: 'Applejack',
-       color: 'orange',
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: 'Mike',
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-
-
-```
-### Notes
-> For a more detailed description of this type of association, see the [Waterline Docs](https://github.com/balderdashy/waterline-docs/blob/master/models/associations/associations.md)
-
-<docmeta name="uniqueID" value="ManytoMany276455">
-<docmeta name="displayName" value="Many-to-Many">
-
+  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CS
